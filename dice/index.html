@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller</title>
+    <style>
+        #result {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .dice {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>掷骰子</h1>
+    <button onclick="rollDice()">掷骰子100次</button>
+    <div id="result"></div>
+
+    <script>
+        function rollDice() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '';  // 清空之前的结果
+            for (let i = 0; i < 100; i++) {
+                const diceValue = Math.floor(Math.random() * 6) + 1;
+                resultDiv.innerHTML += generateDiceSVG(diceValue);
+            }
+        }
+
+        function generateDiceSVG(value) {
+            const diceSVGs = [
+                `<svg class="dice" viewBox="0 0 100 100">
+                    <rect x="10" y="10" width="80" height="80" rx="15" ry="15" fill="white" stroke="black" stroke-width="5"/>
+                    <circle cx="50" cy="50" r="8"/>
+                </svg>`,
+                `<svg class="dice" viewBox="0 0 100 100">
+                    <rect x="10" y="10" width="80" height="80" rx="15" ry="15" fill="white" stroke="black" stroke-width="5"/>
+                    <circle cx="30" cy="30" r="8"/>
+                    <circle cx="70" cy="70" r="8"/>
+                </svg>`,
+                `<svg class="dice" viewBox="0 0 100 100">
+                    <rect x="10" y="10" width="80" height="80" rx="15" ry="15" fill="white" stroke="black" stroke-width="5"/>
+                    <circle cx="30" cy="30" r="8"/>
+                    <circle cx="50" cy="50" r="8"/>
+                    <circle cx="70" cy="70" r="8"/>
+                </svg>`,
+                `<svg class="dice" viewBox="0 0 100 100">
+                    <rect x="10" y="10" width="80" height="80" rx="15" ry="15" fill="white" stroke="black" stroke-width="5"/>
+                    <circle cx="30" cy="30" r="8"/>
+                    <circle cx="70" cy="30" r="8"/>
+                    <circle cx="30" cy="70" r="8"/>
+                    <circle cx="70" cy="70" r="8"/>
+                </svg>`,
+                `<svg class="dice" viewBox="0 0 100 100">
+                    <rect x="10" y="10" width="80" height="80" rx="15" ry="15" fill="white" stroke="black" stroke-width="5"/>
+                    <circle cx="30" cy="30" r="8"/>
+                    <circle cx="70" cy="30" r="8"/>
+                    <circle cx="50" cy="50" r="8"/>
+                    <circle cx="30" cy="70" r="8"/>
+                    <circle cx="70" cy="70" r="8"/>
+                </svg>`,
+                `<svg class="dice" viewBox="0 0 100 100">
+                    <rect x="10" y="10" width="80" height="80" rx="15" ry="15" fill="white" stroke="black" stroke-width="5"/>
+                    <circle cx="30" cy="30" r="8"/>
+                    <circle cx="70" cy="30" r="8"/>
+                    <circle cx="30" cy="50" r="8"/>
+                    <circle cx="70" cy="50" r="8"/>
+                    <circle cx="30" cy="70" r="8"/>
+                    <circle cx="70" cy="70" r="8"/>
+                </svg>`
+            ];
+            return diceSVGs[value - 1];
+        }
+    </script>
+</body>
+</html>
